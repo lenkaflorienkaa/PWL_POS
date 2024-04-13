@@ -35,21 +35,35 @@ require __DIR__.'/../vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
-| Run The Application
+| Create The Application
 |--------------------------------------------------------------------------
 |
-| Once we have the application, we can handle the incoming request using
-| the application's HTTP kernel. Then, we will send the response back
-| to this client's browser, allowing them to enjoy our application.
+| Here we will create the application instance which serves as the
+| central point of this Laravel application. We'll use this instance
+| to handle the incoming requests to this application from the client,
+| and to send the associated responses back to the client.
 |
 */
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
+/*
+|--------------------------------------------------------------------------
+| Run The Application
+|--------------------------------------------------------------------------
+|
+| Once we have the application instance, we can handle the incoming request
+| using the application's HTTP kernel. Then, we will send the response back
+| to the client's browser, allowing them to enjoy our application.
+|
+*/
+
 $kernel = $app->make(Kernel::class);
 
-$response = $kernel->handle(
-    $request = Request::capture()
-)->send();
+$request = Request::capture();
+
+$response = $kernel->handle($request);
+
+$response->send();
 
 $kernel->terminate($request, $response);

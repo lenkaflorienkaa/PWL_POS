@@ -13,10 +13,14 @@
                 <h3 class="card-title">Buat kategori baru</h3>
             </div>
             <form method="post" action="../kategori">
+                @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="kodeKategori">Kode Kategori</label>
-                        <input type="text" class="form-control" id="kodeKategori" name="kodeKategori" placeholder="Kode Kategori">
+                        <label for="kategori_kode">Kode Kategori</label>
+                        <input type="text" class="form-control" id="kategori_kode" name="kategori_kode" placeholder="Kode Kategori">
+                        @error('kategori_kode')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="namaKategori">Nama Kategori</label>
@@ -29,4 +33,17 @@
             </form>
         </div>
     </div>
+
+    {{-- Error message display --}}
+    @if ($errors->any())
+        <div class="container">
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
 @endsection
