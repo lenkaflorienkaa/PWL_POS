@@ -38,3 +38,7 @@ Route::get('/kategori/update/{id}', [KategoriController::class, 'update'])->name
 Route::put('/kategori/update_save/{id}', [KategoriController::class, 'update_save'])->name('kategori.update_save');
 Route::get('/kategori/delete/{id}', [KategoriController::class, 'delete'])->name('kategori.delete');
 
+Route::get('/welcome', function() {
+    return view('welcome');
+});
+
