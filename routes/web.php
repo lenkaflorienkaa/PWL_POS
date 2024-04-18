@@ -40,5 +40,5 @@ Route::get('/kategori/delete/{id}', [KategoriController::class, 'delete'])->name
 
 Route::get('/welcome', function() {
     return view('welcome');
-});
+}); 
 
