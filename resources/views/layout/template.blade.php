@@ -15,31 +15,30 @@
 <!-- Site wrapper -->
 <div class="wrapper">
     <!-- Navbar -->
-    @include('layouts.header')
+    @include('layout.header')
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="{{ url('/') }}" class="brand-link">
-            <img src="{{ asset('adminlte/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img">
+            <img src="{{ asset('adminlte/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image">
             <span class="brand-text font-weight-light">PWL - Starter Code</span>
         </a>
         <!-- Sidebar -->
-        @include('layouts.sidebar')
+        @include('layout.sidebar')
         <!--/.sidebar -->
     </aside>
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    @include('layouts.breadcrumb')
-    <!-- Main content -->
-    <section class="content">
-      @yield('content')
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-
-  @include('layouts.footer')
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        @include('layout.breadcrumb')
+        <!-- Main content -->
+        <section class="content">
+            @yield('content')
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    @include('layout.footer')
 </div>
 <!-- ./wrapper -->
 

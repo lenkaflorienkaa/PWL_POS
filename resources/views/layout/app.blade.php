@@ -6,8 +6,6 @@
     @hasSection('subtitle') | @yield('subtitle') @endif
 @stop
 
-@vite('resources/js/app.js')
-
 {{-- Extend and customize the page content header --}}
 @section('content_header')
     @hasSection('content_header_title')
@@ -41,18 +39,16 @@
     </strong>
 @stop
 
-{{-- Add common Javascript/Jquery code --}}
+{{-- Add common JavaScript/jQuery code --}}
 @push('js')
     <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
 @endpush
-
-@stack('scripts')
 
 {{-- Add common CSS customizations --}}
 @push('css')
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.css"/>
     <style type="text/css">
-        {{-- You can add AdminLTE customizations here --}}
+        /* You can add AdminLTE customizations here */
         /*
         .card-header {
             border-bottom: none;
