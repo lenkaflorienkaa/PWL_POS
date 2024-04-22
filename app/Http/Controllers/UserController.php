@@ -21,28 +21,30 @@ class UserController extends Controller
 
     // Retrieve user data in json form for datatables
     public function list(Request $request)
-    {
-        $users = UserModel::select('user_id', 'username', 'nama', 'level_id')
-                        ->with('level');
+{
+    $users = UserModel::select('user_id', 'username', 'nama', 'level_id')
+                ->with('level'); // Eager load the level information
 
-        // Filter data user berdasarkan level_id
-        if ($request->level_id) {
-            $users->where('level_id', $request->level_id);
-        }
-
-        return DataTables::of($users)
-            ->addIndexColumn()
-            ->addColumn('action', function ($user) { // add action column
-                $btn = '<a href="'.url('/user/' . $user->user_id).'" class="btn btn-info btn-sm">Detail</a> ';
-                $btn .= '<a href="'.url('/user/' . $user->user_id . '/edit').'" class="btn btn-warning btn-sm">Edit</a> ';
-                $btn .= '<form class="d-inline-block" method="POST" action="'.url('/user/'.$user->user_id).'">'
-                        . csrf_field() . method_field('DELETE') .
-                        '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Are you sure to delete this data?\');">Delete</button></form>';
-                return $btn;
-            })
-            ->rawColumns(['action']) // tells that the action column is html
-            ->make(true);
+    // Filter data user berdasarkan level_id
+    if ($request->level_id) {
+        $users->where('level_id', $request->level_id);
     }
+
+    return DataTables::of($users)
+        ->addIndexColumn() // adds column index/no sort (default column name: DT_RowIndex)
+        ->addColumn('level', function ($user) {
+            return $user->level->level_nama; // Access the level name through the relationship
+        })
+        ->addColumn('action', function ($user) { // add action column
+            $btn = '<a href="'.url('/user/' . $user->user_id).'" class="btn btn-info btn-sm">Detail</a> ';
+            $btn .= '<a href="'.url('/user/' . $user->user_id . '/edit').'" class="btn btn-warning btn-sm">Edit</a> ';
+            // Add more actions as needed
+            return $btn;
+        })
+        ->setRowId('user_id')
+        ->make(true);
+}
+
 
     // Menampilkan halaman form tambah user
     public function create()

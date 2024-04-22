@@ -3,6 +3,8 @@
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\StokController;
+use App\Http\Controllers\LevelController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +26,29 @@ Route::get('/{id}', [UserController::class, 'show']); //menampilkan detail user
 Route::get('/{id}/edit', [UserController::class, 'edit']); //menampilkan halaman form edit user
 Route::put('/{id}', [UserController::class, 'update']); //menyimpan perubahan data user
 Route::delete('/{id}', [UserController::class, 'destroy']); //menghapus data user
+});
+
+
+Route::group(['prefix' => 'stok'], function() {
+    Route::get('/', [StokController::class, 'index']);
+    Route::post('/list', [StokController::class, 'list']);
+    Route::get('/create', [StokController::class, 'create']);
+    Route::post('/', [StokController::class, 'store']);
+    Route::get('/{id}', [StokController::class, 'show']);
+    Route::get('/{id}/edit', [StokController::class, 'edit']);
+    Route::put('/{id}', [StokController::class, 'update']);
+    Route::delete('/{id}', [StokController::class, 'destroy']);
+});
+
+Route::group(['prefix' => 'level'], function() {
+    Route::get('/', [LevelController::class, 'index']);
+    Route::post('/list', [LevelController::class, 'list']);
+    Route::get('/create', [LevelController::class, 'create']);
+    Route::post('/', [LevelController::class, 'store']);
+    Route::get('/{id}', [LevelController::class, 'show']);
+    Route::get('/{id}/edit', [LevelController::class, 'edit']);
+    Route::put('/{id}', [LevelController::class, 'update']);
+    Route::delete('/{id}', [levelController::class, 'destroy']);
 });
 
 // Route::get('/level', [LevelController::class, 'index']);

@@ -9,11 +9,20 @@
         <div class="alert alert-danger">{{ session('error') }}</div>
     @endif
 
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <!-- Empty column to push the button to the right -->
+        </div>
+        <div class="col-md-6 text-right">
+            <a href="{{ url('/user/create') }}" class="btn btn-primary">Tambah User</a>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-12">
             <div class="form-group row">
-                <label class="col-1 control-label col-form-label">Filter:</label>
-                <div class="col-3">
+                <label class="col-3 control-label col-form-label">Filter:</label>
+                <div class="col-9">
                     <select class="form-control" id="level_id" name="level_id" required>
                         <option value="">- Semua -</option>
                         @foreach($level as $item)
